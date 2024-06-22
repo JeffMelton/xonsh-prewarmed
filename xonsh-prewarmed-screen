@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -i
 
 xonsh_run=("xonsh" "-DXONSH_PREWARMED=1")
 
