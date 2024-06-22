@@ -1,0 +1,27 @@
+#!/bin/bash
+
+xonsh_run=("xonsh" "-DXONSH_PREWARMED=1")
+
+get_reserve_sess_info() {
+	tmux ls -f '#{&&:
+  #{==:#{session_attached},0},
+  #{==:#{session_name},xonsh_sess_reserve}
+}'
+}
+
+# Get xonsh reserved session.
+reserve_sess_info=$(get_reserve_sess_info)
+
+if [[ -z "$reserve_sess_info" ]]; then
+	# If reserved session is not found create one.
+	tmux new-session -s xonsh_sess_reserve -d "${xonsh_run[@]}"
+fi
+
+# Mark grabbed session as active.
+tmux rename-session -t xonsh_sess_reserve xonsh_sess_active
+
+# Create new reserved xonsh session.
+tmux new-session -s xonsh_sess_reserve -d "${xonsh_run[@]}"
+
+# Use the session.
+tmux attach-session -t xonsh_sess_active
