@@ -24,9 +24,12 @@ chmod +x xonsh-prewarmed-*
 
 ## Usage
 
+GNU Screen:
 ```xsh
 ./xonsh-prewarmed-screen
-# or
+```
+Tmux:
+```xsh
 ./xonsh-prewarmed-tmux
 ```
 
