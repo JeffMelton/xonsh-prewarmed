@@ -1,5 +1,5 @@
 <p align="center">
-<b>xonsh-prewarmed</b> is to run interactive <a href="https://xon.sh">xonsh</a> session in milliseconds using prewarmed <a href="https://www.gnu.org/software/screen/">GNU Screen</a> session from the background.
+<b>xonsh-prewarmed</b> is to run interactive <a href="https://xon.sh">xonsh</a> session in milliseconds using prewarmed session from the background screen.
 </p>
 
 <p align="center">  
@@ -8,19 +8,26 @@ If you like the idea click ⭐ on the repo and and <a href="https://twitter.com/
 
 ## How it works
 
-On first run of `xonsh-screen-prewarmed` script it creates additional reserved xonsh session in [GNU Screen](https://www.gnu.org/software/screen/) manager in the background. On the next runs of the script it uses the reserved sessions and create new reserved sessions in the background. As result the speed of run the new interactive xonsh sessions is milliseconds.
+On first run of `xonsh-prewarmed-screen` script it creates additional reserved xonsh session in the background. On the next runs of the script it uses the reserved sessions and create new reserved sessions in the background. As result the speed of run the new interactive xonsh sessions is milliseconds.
+
+Supported screen managers:
+* [GNU Screen](https://www.gnu.org/software/screen/)
+* [Tmux](https://github.com/tmux/tmux/wiki)
 
 ## Installation
 
 ```xsh
-wget https://raw.githubusercontent.com/anki-code/xonsh-prewarmed/main/xonsh-screen-prewarmed
-chmod +x xonsh-screen-prewarmed
+wget https://raw.githubusercontent.com/anki-code/xonsh-prewarmed/main/xonsh-prewarmed-screen
+wget https://raw.githubusercontent.com/anki-code/xonsh-prewarmed/main/xonsh-prewarmed-tmux
+chmod +x xonsh-prewarmed-*
 ```
 
 ## Usage
 
 ```xsh
-./xonsh-screen-prewarmed
+./xonsh-prewarmed-screen
+# or
+./xonsh-prewarmed-tmux
 ```
 
 ### Detect that xonsh was prewarmed 
@@ -32,7 +39,9 @@ if __xonsh__.env.get('XONSH_PREWARMED', False):
     print('This xonsh session was prewarmed!')
 ```
 
-### GNU Screen cheatsheet
+## Cheatsheet
+
+### GNU Screen
 
 Basics:
 
@@ -45,4 +54,4 @@ Basics:
 
 ## Add another session manager
 
-Feel free to add another session manager (e.g. `tmux`, `zellij`) by creating `xonsh-<manager>-prewarmed`.
+Feel free to add another session manager (e.g. `zellij`) by creating `xonsh-prewarmed-<manager>`.
